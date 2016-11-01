@@ -118,7 +118,8 @@ class User {
 
             $sql = "INSERT INTO Users(email, password, name)
                         VALUES ('$this->email', '$this->password', '$this->name')";
-            
+            $sql = $connection->real_escape_string($sql);
+
             $result = $connection->query($sql);
 
             if (!$result || $connection->error) {
@@ -139,7 +140,8 @@ class User {
     {
         
         $sql = "SELECT * FROM Users WHERE email='$email' AND password='$password'";
-        
+        $sql = $connection->real_escape_string($sql);
+
         $result = $connection->query($sql);
         
         if (!$result || $connection->error) {
@@ -170,6 +172,7 @@ class User {
     {
         
         $sql = "SELECT * FROM Users";
+        $sql = $connection->real_escape_string($sql);
         $ret = [];
         
         $result = $connection->query($sql);
@@ -228,7 +231,8 @@ class User {
     {
         
         $sql = "SELECT * FROM Users WHERE email='$email'";
-        
+        $sql = $connection->real_escape_string($sql);
+
         $result = $connection->query($sql);
         
         if (!$result || $connection->error) {

@@ -71,6 +71,7 @@ class Comments{
 
             $sql = "INSERT INTO Comments (email, tweet_id, date, comment)
                         VALUES ('$this->email','$this->tweet_id','$this->date', '$this->comment') ";
+            $sql = $connection->real_escape_string($sql);
             
             $result = $connection->query($sql);
 
@@ -91,6 +92,7 @@ class Comments{
     {
         
         $sql = "SELECT * FROM Comments WHERE tweet_id='$tweet_id'";
+        $sql = $connection->real_escape_string($sql);
         $ret = [];
         
         $result = $connection->query($sql);

@@ -86,7 +86,7 @@ class Messages {
             
             $sql = "INSERT INTO Messages (email, sender, message, date, readed)
                         VALUES ('$this->email','$this->sender', '$this->message', '$this->date', '$this->readed') ";
-            
+            $sql = $connection->real_escape_string($sql);
             $result = $connection->query($sql);
             var_dump($sql);
 
@@ -107,6 +107,7 @@ class Messages {
     {
 
         $sql = "SELECT * FROM Messages WHERE sender='$sender'";
+        $sql = $connection->real_escape_string($sql);
         $ret = [];
         
         $result = $connection->query($sql);
@@ -151,6 +152,7 @@ EOT;
     {
         
         $sql = "SELECT * FROM Messages WHERE email='$email'";
+        $sql = $connection->real_escape_string($sql);
         $ret = [];
         
         $result = $connection->query($sql);
