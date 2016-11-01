@@ -79,9 +79,8 @@ class Tweets {
     
     static public function loadAllTweetsByEmail(mysqli $connection, $email)
     {
-        
+        $email = $connection->real_escape_string($email);
         $sql = "SELECT * FROM Tweets WHERE email='$email'";
-        $sql = $connection->real_escape_string($sql);
         $ret = [];
         
         $result = $connection->query($sql);
@@ -137,7 +136,6 @@ EOT;
     {
         
         $sql = "SELECT * FROM Tweets";
-        $sql = $connection->real_escape_string($sql);
         $ret = [];
         
         $result = $connection->query($sql);
@@ -193,9 +191,8 @@ EOT;
     
     static public function loadTweetsById(mysqli $connection, $id)
     {
-        
+        $id = $connection->real_escape_string($id);
         $sql = "SELECT * FROM Tweets WHERE id='$id'";
-        $sql = $connection->real_escape_string($sql);
         $ret = [];
         
         $result = $connection->query($sql);

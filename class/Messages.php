@@ -105,9 +105,8 @@ class Messages {
     
     static public function loadAllMySendMessages(mysqli $connection, $sender)
     {
-
+        $sender = $connection->real_escape_string($sender);
         $sql = "SELECT * FROM Messages WHERE sender='$sender'";
-        $sql = $connection->real_escape_string($sql);
         $ret = [];
         
         $result = $connection->query($sql);
@@ -150,9 +149,8 @@ EOT;
     
     static public function loadAllMyMessages(mysqli $connection, $email)
     {
-        
+        $email = $connection->real_escape_string($email);
         $sql = "SELECT * FROM Messages WHERE email='$email'";
-        $sql = $connection->real_escape_string($sql);
         $ret = [];
         
         $result = $connection->query($sql);

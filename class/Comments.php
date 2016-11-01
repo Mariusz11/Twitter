@@ -90,9 +90,8 @@ class Comments{
     
     static public function loadAllCommentsByTweetId(mysqli $connection, $tweet_id)
     {
-        
+        $tweet_id = $connection->real_escape_string($tweet_id);
         $sql = "SELECT * FROM Comments WHERE tweet_id='$tweet_id'";
-        $sql = $connection->real_escape_string($sql);
         $ret = [];
         
         $result = $connection->query($sql);

@@ -172,7 +172,6 @@ class User {
     {
         
         $sql = "SELECT * FROM Users";
-        $sql = $connection->real_escape_string($sql);
         $ret = [];
         
         $result = $connection->query($sql);
@@ -229,9 +228,8 @@ class User {
     
     static public function loadUserInfoByEmail(mysqli $connection, $email)
     {
-        
+        $email = $connection->real_escape_string($email);
         $sql = "SELECT * FROM Users WHERE email='$email'";
-        $sql = $connection->real_escape_string($sql);
 
         $result = $connection->query($sql);
         
